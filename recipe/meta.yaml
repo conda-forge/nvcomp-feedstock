@@ -29,10 +29,11 @@ build:
   # TODO: Enable Windows with CUDA 12 when it is supported
   skip: True  # [win32 or osx or aarch64 or ppc64le or cuda_compiler_version not in ("11.2", "12.0") or (win and cuda_major == "12")]
   script:
-    - mkdir -pv $PREFIX/include              # [linux]
-    - mv -v include/* $PREFIX/include        # [linux]
-    - mkdir -pv $PREFIX/lib                  # [linux]
-    - mv -v lib/* $PREFIX/lib/               # [linux]
+    - mv -v $SRC_DIR/LICENSE $SRC_DIR/LICENSE.txt  # [linux]
+    - mkdir -pv $PREFIX/include                    # [linux]
+    - mv -v include/* $PREFIX/include              # [linux]
+    - mkdir -pv $PREFIX/lib                        # [linux]
+    - mv -v lib/* $PREFIX/lib/                     # [linux]
     - mkdir %LIBRARY_INC%                                   # [win]
     - copy %SRC_DIR%\\include\\* %LIBRARY_INC%\\            # [win]
     - mkdir %LIBRARY_LIB%                                   # [win]
@@ -86,7 +87,7 @@ about:
   license:
     LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
   license_file:
-    - LICENSE
+    - LICENSE.txt
     - cudart_LICENSE.txt
   license_url: https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
   summary: "High Speed Data Compression Using NVIDIA GPUs"
