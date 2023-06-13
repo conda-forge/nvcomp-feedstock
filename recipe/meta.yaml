@@ -20,19 +20,20 @@ source:
     sha256: e362e1fbf6b101ad71aa5314f21d00a4353b90efbe5cdedc5fcfb0f3b68cd791  # [win and cuda_major == "12"]
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
-    fn: cudart_LICENSE
+    fn: cudart_LICENSE.txt
     sha256: 5db25d4fd138013b563f9a3d1d87f7de7df1dac014fd4cccdfbb3435a5cff761
 
 build:
-  number: 0
+  number: 1
   # TODO: Enable aarch64 builds
   # TODO: Enable Windows with CUDA 12 when it is supported
   skip: True  # [win32 or osx or aarch64 or ppc64le or cuda_compiler_version not in ("11.2", "12.0") or (win and cuda_major == "12")]
   script:
-    - mkdir -pv $PREFIX/include              # [linux]
-    - mv -v include/* $PREFIX/include        # [linux]
-    - mkdir -pv $PREFIX/lib                  # [linux]
-    - mv -v lib/* $PREFIX/lib/               # [linux]
+    - mv -v $SRC_DIR/LICENSE $SRC_DIR/LICENSE.txt  # [linux]
+    - mkdir -pv $PREFIX/include                    # [linux]
+    - mv -v include/* $PREFIX/include              # [linux]
+    - mkdir -pv $PREFIX/lib                        # [linux]
+    - mv -v lib/* $PREFIX/lib/                     # [linux]
     - mkdir %LIBRARY_INC%                                   # [win]
     - copy %SRC_DIR%\\include\\* %LIBRARY_INC%\\            # [win]
     - mkdir %LIBRARY_LIB%                                   # [win]
@@ -86,8 +87,8 @@ about:
   license:
     LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
   license_file:
-    - LICENSE
-    - cudart_LICENSE
+    - LICENSE.txt
+    - cudart_LICENSE.txt
   license_url: https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
   summary: "High Speed Data Compression Using NVIDIA GPUs"
   description: |
