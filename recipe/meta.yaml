@@ -25,7 +25,6 @@ source:
 
 build:
   number: 2
-  # TODO: Enable aarch64 builds
   # TODO: Enable Windows with CUDA 12 when it is supported
   skip: True  # [win32 or osx or ppc64le or cuda_compiler_version not in ("11.2", "12.0") or (win and cuda_major == "12")]
   script:
