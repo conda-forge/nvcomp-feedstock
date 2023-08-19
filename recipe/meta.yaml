@@ -1,4 +1,4 @@
-{% set version = "2.6.1" %}
+{% set version = "3.0.1" %}
 {% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
 {% set platform = "x86_64" %}  # [linux64]
 {% set platform = "SBSA" %}  # [aarch64]
@@ -12,12 +12,11 @@ package:
 
 source:
   - url: https://developer.download.nvidia.com/compute/nvcomp/{{ version }}/local_installers/nvcomp_{{ version }}_{{ platform }}_{{ cuda_major }}.x.{{ extension }}
-    sha256: 62046476076d1b455fb13fb78b38d3496bacafbfdbb0494fb3392240a04466ea  # [linux64 and cuda_major == "11"]
-    sha256: a0792b666caaf593a9dd4130979578fd3a78230f4407645c295700ef8e7aaaf2  # [linux64 and cuda_major == "12"]
-    sha256: a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55  # [aarch64 and cuda_major == "11"]
-    sha256: fc668519a8344e9d05335bad4bc5d23a504cdc7579aea41f12d6aa0f3079e709  # [aarch64 and cuda_major == "12"]
-    sha256: 4f0105a51ac6ea947154e252c8b220baf3345803f55644b5aad84e22ae4f8986  # [win and cuda_major == "11"]
-    sha256: e362e1fbf6b101ad71aa5314f21d00a4353b90efbe5cdedc5fcfb0f3b68cd791  # [win and cuda_major == "12"]
+    sha256: d9d93320b438ce2335d1b1561c213798242f5b6b0f48163c9a96ffa9a08bbb5b  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: 739184ab73bdb9e560d8754714f25b8a40b51f08be0d41f77c32da1d21a8eb94  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: c1b6cf3f492400ec8594c7b37eb88441121fbbe0de044ff0e29dc7d7d5ff6731  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: f9f801b62df21044e1779aafc6771358cf9b834285d5148bce98a1998daeee8b  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: d773733ab6cba86c365b0d91ce487055d2077c94be78a5121bb798d5fba8a316  # [win and (cuda_compiler_version or "None").startswith("12")]
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
     fn: cudart_LICENSE.txt
@@ -25,8 +24,7 @@ source:
 
 build:
   number: 2
-  # TODO: Enable Windows with CUDA 12 when it is supported
-  skip: True  # [win32 or osx or ppc64le or cuda_compiler_version not in ("11.2", "12.0") or (win and cuda_major == "12")]
+  skip: True  # [osx or ppc64le or cuda_compiler_version not in ("11.2", "12.0") or (win and (cuda_compiler_version or "None").startswith("11"))]
   script:
     - mv -v $SRC_DIR/LICENSE $SRC_DIR/LICENSE.txt  # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
