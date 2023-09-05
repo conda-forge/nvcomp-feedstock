@@ -1,4 +1,4 @@
-{% set version = "3.0.1" %}
+{% set version = "3.0.2" %}
 {% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
 {% set platform = "x86_64" %}  # [linux64]
 {% set platform = "SBSA" %}  # [aarch64]
@@ -12,11 +12,12 @@ package:
 
 source:
   - url: https://developer.download.nvidia.com/compute/nvcomp/{{ version }}/local_installers/nvcomp_{{ version }}_{{ platform }}_{{ cuda_major }}.x.{{ extension }}
-    sha256: d9d93320b438ce2335d1b1561c213798242f5b6b0f48163c9a96ffa9a08bbb5b  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
-    sha256: 739184ab73bdb9e560d8754714f25b8a40b51f08be0d41f77c32da1d21a8eb94  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
-    sha256: c1b6cf3f492400ec8594c7b37eb88441121fbbe0de044ff0e29dc7d7d5ff6731  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
-    sha256: f9f801b62df21044e1779aafc6771358cf9b834285d5148bce98a1998daeee8b  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
-    sha256: d773733ab6cba86c365b0d91ce487055d2077c94be78a5121bb798d5fba8a316  # [win and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 5c9ce1b9fbe50daff380772cfe89ae3265b0a3798eb98d09931a62d359935d5e  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: 161ed50a5183dcd671e332b2441936151672511e38a3bdae5d27e9da272f9485  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 150ec2767f09dd866edff11ae6705b55031ae6331a53b687ca50c090b667aad4  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: 0359b7fcc4e86f7547b2e80b564305daa3657f3093272d52d1c3382201850c4d  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 42aa084c6092d816cb49ca8a80bb7f9f5843494d7582c20d8dd734bbfb0d2732  # [win and (cuda_compiler_version or "None").startswith("11")]
+    sha256: 8831a648dedbd884bbd81ecd604ac52902da27041af71620b4c95f62c388c772  # [win and (cuda_compiler_version or "None").startswith("12")]
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
     fn: cudart_LICENSE.txt
@@ -24,7 +25,7 @@ source:
 
 build:
   number: 3
-  skip: True  # [osx or ppc64le or cuda_compiler_version not in ("11.2", "12.0") or (win and (cuda_compiler_version or "None").startswith("11"))]
+  skip: True  # [osx or ppc64le or not ((cuda_compiler_version or "None").startswith("11") or (cuda_compiler_version or "None").startswith("12"))]
   script:
     - mv -v $SRC_DIR/LICENSE $SRC_DIR/LICENSE.txt  # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
