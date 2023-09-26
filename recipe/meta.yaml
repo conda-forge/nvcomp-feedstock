@@ -12,12 +12,12 @@ package:
 
 source:
   - url: https://developer.download.nvidia.com/compute/nvcomp/{{ version }}/local_installers/nvcomp_{{ version }}_{{ platform }}_{{ cuda_major }}.x.{{ extension }}
-    sha256: 62046476076d1b455fb13fb78b38d3496bacafbfdbb0494fb3392240a04466ea  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
-    sha256: a0792b666caaf593a9dd4130979578fd3a78230f4407645c295700ef8e7aaaf2  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
-    sha256: a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
-    sha256: fc668519a8344e9d05335bad4bc5d23a504cdc7579aea41f12d6aa0f3079e709  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
-    sha256: 4f0105a51ac6ea947154e252c8b220baf3345803f55644b5aad84e22ae4f8986  # [win and (cuda_compiler_version or "None").startswith("11")]
-    sha256: e362e1fbf6b101ad71aa5314f21d00a4353b90efbe5cdedc5fcfb0f3b68cd791  # [win and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 2e248fc72bb62a4f3d01656661a41b2eeebd81c1cd3b6cbf0ffb65aa67bb2ed0  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: ac4834397291f245578af959694e816d96f80036eac50b5f24b113dee5b54225  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 60f2748c7e881699e84d47ce9e4666ab71698c693c514307a8e8fc9a6ae13856  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: 5e3fb97b2dff3450bc2530a2453c33a7d062b9709e1fbff6f6edaff4913b1f7a  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 7bb9f616987a9755e3140dd2382a6c980daf37f3fa946116328398835087aba1  # [win and (cuda_compiler_version or "None").startswith("11")]
+    sha256: 7db58b8189e95cbba4f99afd11255c5c1c7dd454998c6dbd39c5d663d4874fbd  # [win and (cuda_compiler_version or "None").startswith("12")]
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
     fn: cudart_LICENSE.txt
