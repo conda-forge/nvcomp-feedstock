@@ -14,8 +14,8 @@ source:
   - url: https://developer.download.nvidia.com/compute/nvcomp/{{ version }}/local_installers/nvcomp_{{ version }}_{{ platform }}_{{ cuda_major }}.x.{{ extension }}
     sha256: 2631c4cb36c2b65e1c8d3a818bc470b849893e72bdbee0365d22dc3f7c130954  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
     sha256: a76511cc55a40aa9f8ca6b6b437102cc90969c69bfbcd66265f2e04f8f01435f  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
-    sha256: fa043e1898065cd900183c772ae9069916acf28799b7818b589dcfa7e65e612c  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
-    sha256: fd84d1c50ecfe2a8d9597c22d5bf7e397257472d33504dc0fdeed2217f170423  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+    sha256: 21b0b6ad262101a9d89bc5dc83cddf3da6b57b0a5ef8d75e5876e921ca46c9c5  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
+    sha256: d1a25754c21e37e643ebe5828ffdb11d0f237e27c4f29b83b5c17de2e44247d5  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
     sha256: 10b98c8b58b9186656bfaf06ce8a7d06a5ce3c1318a9eaa254c47cadb71f748d  # [win and (cuda_compiler_version or "None").startswith("11")]
     sha256: f7f25250d628e015854c0f65688921a2947f53f8b72aa01ce7c45aa2ea04893c  # [win and (cuda_compiler_version or "None").startswith("12")]
   # Include cudart license because it is statically linked.
