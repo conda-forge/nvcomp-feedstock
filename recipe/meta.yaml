@@ -25,7 +25,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [osx or ppc64le or not ((cuda_compiler_version or "None").startswith("11") or (cuda_compiler_version or "None").startswith("12"))]
+  skip: True  # [osx or ppc64le or not ((cuda_compiler_version or "None") == "11.8" or (cuda_compiler_version or "None").startswith("12"))]
   script:
     - mv -v $SRC_DIR/LICENSE $SRC_DIR/LICENSE.txt  # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
