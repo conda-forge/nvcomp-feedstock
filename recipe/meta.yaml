@@ -11,7 +11,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://developer.download.nvidia.com/compute/nvcomp/{{ version }}/local_installers/nvcomp-{{ platform }}-{{ version }}-cuda{{ cuda_major }}.x.{{ extension }}
+  - url: https://developer.download.nvidia.com/compute/nvcomp/{{ version }}/local_installers/nvcomp-{{ platform }}-{{ version }}-cuda{{ cuda_major }}.x.{{ extension }}  # [linux64 or aarch64 or win]
     sha256: 8e92afa5f007e0d5373bf373ffa6d3c531e0a1d33c76f475e100bb0252e53777  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
     sha256: 609f64607d02e77c77c1848f81a04bbb1389329fa95533813c3fe7d77c57bd30  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
     sha256: 456129c03bfce6c3935b9f68455f40b65bc1b88b3f7972f70cc6fb9df222e676  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
