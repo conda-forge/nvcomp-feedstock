@@ -66,19 +66,15 @@ test:
     - test -f $PREFIX/include/nvcomp.h                                 # [linux]
     - test -f $PREFIX/include/nvcomp.hpp                               # [linux]
     - test -f $PREFIX/lib/libnvcomp.so                                 # [linux]
-    - test -f $PREFIX/lib/libnvcomp_bitcomp.so                         # [linux]
-    - test -f $PREFIX/lib/libnvcomp_gdeflate.so                        # [linux]
-    - test -f $PREFIX/lib/libnvcomp_gdeflate_cpu.so                    # [linux]
+    - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
     - ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf    # [linux]
     - for f in $PREFIX/lib/libnvcomp*.so; do ./test_load_elf $f; done  # [linux]
     - if not exist %LIBRARY_INC%/nvcomp.h exit 1                       # [win]
     - if not exist %LIBRARY_INC%/nvcomp.hpp exit 1                     # [win]
     - if not exist %LIBRARY_LIB%/nvcomp.lib exit 1                     # [win]
-    - if not exist %LIBRARY_LIB%/nvcomp_bitcomp.lib exit 1             # [win]
-    - if not exist %LIBRARY_LIB%/nvcomp_gdeflate.lib exit 1            # [win]
+    - if not exist %LIBRARY_LIB%/nvcomp_cpu.lib exit 1                 # [win]
     - if not exist %LIBRARY_BIN%/nvcomp.dll exit 1                     # [win]
-    - if not exist %LIBRARY_BIN%/nvcomp_bitcomp.dll exit 1             # [win]
-    - if not exist %LIBRARY_BIN%/nvcomp_gdeflate.dll exit 1            # [win]
+    - if not exist %LIBRARY_BIN%/nvcomp_cpu.dll exit 1                 # [win]
 
 about:
   home: https://developer.nvidia.com/nvcomp
