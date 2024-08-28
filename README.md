@@ -11,7 +11,7 @@ Summary: High Speed Data Compression Using NVIDIA GPUs
 
 Development: https://developer.nvidia.com/nvcomp
 
-Documentation: https://github.com/NVIDIA/nvcomp/blob/main/README.md
+Documentation: https://docs.nvidia.com/cuda/nvcomp/index.html
 
 The nvCOMP library provides fast lossless data compression and
 decompression using a GPU. It features generic compression interfaces to
@@ -219,7 +219,5 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@adibbley](https://github.com/adibbley/)
-* [@bdice](https://github.com/bdice/)
-* [@jakirkham](https://github.com/jakirkham/)
+* [@conda-forge/cuda](https://github.com/orgs/conda-forge/teams/cuda/)
 
