@@ -27,7 +27,6 @@ build:
   number: 0
   skip: True  # [osx or ppc64le or not ((cuda_compiler_version or "None") == "11.8" or (cuda_compiler_version or "None").startswith("12"))]
   script:
-    - mv -v $SRC_DIR/LICENSE $SRC_DIR/LICENSE.txt  # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
     - mv -v include/* $PREFIX/include              # [linux]
     - mkdir -pv $PREFIX/lib                        # [linux]
@@ -81,7 +80,7 @@ about:
   license:
     LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
   license_file:
-    - LICENSE.txt
+    - LICENSE
     - cudart_LICENSE.txt
   license_url: https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
   summary: "High Speed Data Compression Using NVIDIA GPUs"
