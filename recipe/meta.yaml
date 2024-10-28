@@ -36,7 +36,7 @@ build:
     - mkdir %LIBRARY_LIB%                                   # [win]
     - copy %SRC_DIR%\\lib\\nvcomp*.lib %LIBRARY_LIB%\\      # [win]
     - mkdir %LIBRARY_BIN%                                   # [win]
-    - copy %SRC_DIR%\\lib\\nvcomp*.dll %LIBRARY_BIN%\\      # [win]
+    - copy %SRC_DIR%\\bin\\nvcomp*.dll %LIBRARY_BIN%\\      # [win]
   ignore_run_exports_from:
     - {{ compiler('cuda') }}
   run_exports:
