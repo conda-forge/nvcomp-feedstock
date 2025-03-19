@@ -25,8 +25,8 @@ source:
     sha256: e2c71babfd18a8e69542dd7e9ca018f9caa438094001a58e6bc4d8c999bf0d07
 
 build:
-  number: 0
-  skip: True  # [osx or ppc64le or not ((cuda_compiler_version or "None") == "11.8" or (cuda_compiler_version or "None").startswith("12"))]
+  number: 1
+  skip: true  # [osx or ppc64le or not ((cuda_compiler_version or "None") == "11.8" or (cuda_compiler_version or "None").startswith("12"))]
   script:
     - mkdir -pv $PREFIX/include                    # [linux]
     - mv -v include/* $PREFIX/include              # [linux]
@@ -38,6 +38,7 @@ build:
     - copy %SRC_DIR%\\lib\\nvcomp*.lib %LIBRARY_LIB%\\      # [win]
     - mkdir %LIBRARY_BIN%                                   # [win]
     - copy %SRC_DIR%\\bin\\nvcomp*.dll %LIBRARY_BIN%\\      # [win]
+    - check-glibc "$PREFIX"/lib*/*.so.* "$PREFIX"/bin/* "$PREFIX"/targets/*/lib*/*.so.* "$PREFIX"/targets/*/bin/*  # [linux]
   ignore_run_exports_from:
     - {{ compiler('cuda') }}
   run_exports:
@@ -50,6 +51,7 @@ requirements:
     - {{ compiler('cuda') }}
     - {{ stdlib('c') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
+    - cf-nvidia-tools 1  # [linux]
   host:
     - cuda-version {{ cuda_major }}
   run:
@@ -78,8 +80,7 @@ test:
 
 about:
   home: https://developer.nvidia.com/nvcomp
-  license:
-    LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
+  license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
   license_file:
     - LICENSE
     - cudart_LICENSE.txt
