@@ -17,7 +17,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/{{ platform }}/nvcomp-{{ platform }}-{{ version }}_cuda{{ cuda_major }}-archive.{{ extension }}  # [linux64 or aarch64 or win]
+  - url: https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/{{ platform }}/nvcomp-{{ platform }}-{{ version }}_cuda{{ cuda_major }}-archive.{{ extension }}
     sha256: {{ sha256 }}
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
@@ -26,7 +26,7 @@ source:
 
 build:
   number: 1
-  skip: true  # [osx or ppc64le or not ((cuda_compiler_version or "None") == "11.8" or (cuda_compiler_version or "None").startswith("12"))]
+  skip: true  # [ppc64le or (cuda_compiler_version or "None") == "None"]
   script:
     - mkdir -pv $PREFIX/include                    # [linux]
     - mv -v include/* $PREFIX/include              # [linux]
