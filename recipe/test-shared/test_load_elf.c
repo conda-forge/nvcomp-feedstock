@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <dlfcn.h>
 
+#include <nvcomp.h>
+
 int main(int argc, char** argv) {
     void* handle;
     char* full_lib;

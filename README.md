@@ -96,7 +96,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-nvcomp-green.svg)](https://anaconda.org/conda-forge/nvcomp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/nvcomp.svg)](https://anaconda.org/conda-forge/nvcomp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/nvcomp.svg)](https://anaconda.org/conda-forge/nvcomp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/nvcomp.svg)](https://anaconda.org/conda-forge/nvcomp) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libnvcomp-green.svg)](https://anaconda.org/conda-forge/libnvcomp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libnvcomp.svg)](https://anaconda.org/conda-forge/libnvcomp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libnvcomp.svg)](https://anaconda.org/conda-forge/libnvcomp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libnvcomp.svg)](https://anaconda.org/conda-forge/libnvcomp) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libnvcomp--dev-green.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libnvcomp-dev.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libnvcomp-dev.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libnvcomp-dev.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libnvcomp--static-green.svg)](https://anaconda.org/conda-forge/libnvcomp-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libnvcomp-static.svg)](https://anaconda.org/conda-forge/libnvcomp-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libnvcomp-static.svg)](https://anaconda.org/conda-forge/libnvcomp-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libnvcomp-static.svg)](https://anaconda.org/conda-forge/libnvcomp-static) |
 
 Installing nvcomp
 =================
@@ -108,41 +110,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `nvcomp` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libnvcomp, libnvcomp-dev, libnvcomp-static` can be installed with `conda`:
 
 ```
-conda install nvcomp
-```
-
-or with `mamba`:
-
-```
-mamba install nvcomp
-```
-
-It is possible to list all of the versions of `nvcomp` available on your platform with `conda`:
-
-```
-conda search nvcomp --channel conda-forge
+conda install libnvcomp libnvcomp-dev libnvcomp-static
 ```
 
 or with `mamba`:
 
 ```
-mamba search nvcomp --channel conda-forge
+mamba install libnvcomp libnvcomp-dev libnvcomp-static
+```
+
+It is possible to list all of the versions of `libnvcomp` available on your platform with `conda`:
+
+```
+conda search libnvcomp --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libnvcomp --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search nvcomp --channel conda-forge
+mamba repoquery search libnvcomp --channel conda-forge
 
-# List packages depending on `nvcomp`:
-mamba repoquery whoneeds nvcomp --channel conda-forge
+# List packages depending on `libnvcomp`:
+mamba repoquery whoneeds libnvcomp --channel conda-forge
 
-# List dependencies of `nvcomp`:
-mamba repoquery depends nvcomp --channel conda-forge
+# List dependencies of `libnvcomp`:
+mamba repoquery depends libnvcomp --channel conda-forge
 ```
 
 

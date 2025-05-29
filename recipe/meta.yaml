@@ -11,9 +11,10 @@
 {% set sha256 = "dedc289953e9011a0876b7ae0bbb422155a7302646487cba0c384a4518318a47" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
 {% set sha256 = "7d1cafcbfd0373e8d2a7af996091ceb1e1fa64f2590fc2c8224b69f70d67e3bb" %}  # [win and (cuda_compiler_version or "None").startswith("11")]
 {% set sha256 = "746e1e3c85538bd2602b8acdc793ee92cf62d7bd0cc7a49e8c7954c1c35083b0" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
+{% set soname = version.split(".")[0] %}
 
 package:
-  name: nvcomp
+  name: nvcomp-split
   version: {{ version }}
 
 source:
@@ -25,7 +26,7 @@ source:
     sha256: e2c71babfd18a8e69542dd7e9ca018f9caa438094001a58e6bc4d8c999bf0d07
 
 build:
-  number: 1
+  number: 2
   skip: true  # [ppc64le or (cuda_compiler_version or "None") == "None"]
   script:
     - mkdir -pv $PREFIX/include                    # [linux]
@@ -39,45 +40,138 @@ build:
     - mkdir %LIBRARY_BIN%                                   # [win]
     - copy %SRC_DIR%\\bin\\* %LIBRARY_BIN%\\                # [win]
     - check-glibc "$PREFIX"/lib*/*.so.* "$PREFIX"/bin/* "$PREFIX"/targets/*/lib*/*.so.* "$PREFIX"/targets/*/bin/*  # [linux]
-  ignore_run_exports_from:
-    - {{ compiler('cuda') }}
-  run_exports:
-    - {{ pin_subpackage("nvcomp") }}
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}
-    - {{ stdlib('c') }}
-    - arm-variant * {{ arm_variant_type }}  # [aarch64]
     - cf-nvidia-tools 1  # [linux]
-  host:
-    - cuda-version {{ cuda_major }}
-  run:
-    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
-  run_constrained:
-    - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
-test:
-  requires:
-    - {{ compiler('c') }}  # [linux]
-  files:
-    - test_load_elf.c      # [linux]
-  commands:
-    - test -f $PREFIX/include/nvcomp.h                                 # [linux]
-    - test -f $PREFIX/include/nvcomp.hpp                               # [linux]
-    - test -f $PREFIX/lib/libnvcomp.so                                 # [linux]
-    - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
-    - ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf    # [linux]
-    - for f in $PREFIX/lib/libnvcomp*.so; do ./test_load_elf $f; done  # [linux]
-    - if not exist %LIBRARY_INC%/nvcomp.h exit 1                       # [win]
-    - if not exist %LIBRARY_INC%/nvcomp.hpp exit 1                     # [win]
-    - if not exist %LIBRARY_LIB%/nvcomp.lib exit 1                     # [win]
-    - if not exist %LIBRARY_LIB%/nvcomp_cpu.lib exit 1                 # [win]
-    - if not exist %LIBRARY_BIN%/nvcomp.dll exit 1                     # [win]
-    - if not exist %LIBRARY_BIN%/nvcomp_cpu.dll exit 1                 # [win]
+outputs:
+  - name: libnvcomp
+    files:
+      include:
+        - lib/*.so  # [linux]
+        - lib/*.so.*  # [linux]
+        - Library\bin  # [win]
+    build:
+      ignore_run_exports:
+        - cuda-version
+    requirements:
+      build:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("cuda") }}
+        - {{ stdlib("c") }}
+        - arm-variant * {{ arm_variant_type }}  # [aarch64]
+      host:
+        - cuda-version {{ cuda_compiler_version }}
+      run:
+        - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+    test:
+      commands:
+        - test -f $PREFIX/lib/libnvcomp.so                                 # [linux]
+        - test -f $PREFIX/lib/libnvcomp.so.{{ soname }}                    # [linux]
+        - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
+        - if not exist %LIBRARY_BIN%\nvcomp.dll exit 1                     # [win]
+        - if not exist %LIBRARY_BIN%\nvcomp_cpu.dll exit 1                 # [win]
 
+  - name: libnvcomp-dev
+    files:
+      include:
+        - include  # [unix]
+        - lib/cmake  # [unix]
+        - lib/*device_static.a  # [unix]
+        - Library\include  # [win]
+        - Library\lib  # [win]
+        - Library\lib\*device_static.lib  # [win]
+      exclude:
+        - lib/cmake/nvcomp/*static*.cmake  # [linux]
+        - Library\lib\*static.lib  # [win]
+        - Library\lib\cmake\nvcomp\*static*.cmake  # [win]
+    build:
+      run_exports:
+        - {{ pin_subpackage("libnvcomp") }}
+      ignore_run_exports:
+        - cuda-version
+    requirements:
+      build:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("cuda") }}
+        - {{ stdlib("c") }}
+        - arm-variant * {{ arm_variant_type }}  # [aarch64]
+      host:
+        - cuda-version {{ cuda_compiler_version }}
+        - {{ pin_subpackage("libnvcomp", exact=True) }}
+      run:
+        - {{ pin_subpackage("libnvcomp", exact=True) }}
+        - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+    test:
+      requires:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("cuda") }}
+        - cmake
+        - ninja
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+      files:
+        - test-shared
+      commands:
+        - test -f $PREFIX/include/nvcomp.h                                 # [linux]
+        - test -f $PREFIX/include/nvcomp.hpp                               # [linux]
+        - test -f $PREFIX/lib/cmake/nvcomp/nvcomp-config.cmake             # [linux]
+        - test ! -f $PREFIX/lib/nvcomp_static.a                            # [linux]
+        - if not exist %LIBRARY_INC%\nvcomp.h exit 1                       # [win]
+        - if not exist %LIBRARY_INC%\nvcomp.hpp exit 1                     # [win]
+        - if not exist %LIBRARY_LIB%\nvcomp.lib exit 1                     # [win]
+        - if not exist %LIBRARY_LIB%\nvcomp_cpu.lib exit 1                 # [win]
+        - if not exist %LIBRARY_LIB%\cmake\nvcomp-config.cmake exit 1      # [win]
+        - if exist %LIBRARY_LIB%\nvcomp_static.lib exit 1                  # [win]
+        - cmake -B build $CMAKE_ARGS -G Ninja -S test-shared  # [linux]
+        - cmake -B build %CMAKE_ARGS% -S test-shared # [win]
+        - cmake --build build
+
+  - name: libnvcomp-static
+    files:
+      include:
+        - lib/*static.a  # [unix]
+        - lib/cmake/nvcomp/*static*.cmake  # [linux]
+        - Library\lib\*static.lib  # [win]
+        - Library\lib\cmake\nvcomp\*static*.cmake  # [win]
+      exclude:
+        - lib/*device_static.a  # [unix]
+        - Library\lib\*device_static.lib  # [win]
+    build:
+      ignore_run_exports:
+        - cuda-version
+    requirements:
+      build:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("cuda") }}
+        - {{ stdlib("c") }}
+        - arm-variant * {{ arm_variant_type }}  # [aarch64]
+      host:
+        - cuda-version {{ cuda_compiler_version }}
+        - {{ pin_subpackage("libnvcomp-dev", exact=True) }}
+      run:
+        - {{ pin_subpackage("libnvcomp-dev", exact=True) }}
+        - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+    test:
+      requires:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("cuda") }}
+        - cmake
+        - ninja
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+      files:
+        - test-static
+      commands:
+        - test -f $PREFIX/lib/libnvcomp_static.a  # [unix]
+        - if not exist %LIBRARY_LIB%\nvcomp_static.lib exit 1  # [win]
+        - cmake -B build $CMAKE_ARGS -G Ninja -S test-static  # [linux]
+        - cmake -B build %CMAKE_ARGS% -S test-static # [win]
+        - cmake --build build
 about:
   home: https://developer.nvidia.com/nvcomp
   license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
@@ -100,5 +194,6 @@ about:
   dev_url: https://developer.nvidia.com/nvcomp
 
 extra:
+  feedstock-name: nvcomp
   recipe-maintainers:
     - conda-forge/cuda
