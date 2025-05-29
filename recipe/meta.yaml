@@ -34,11 +34,11 @@ build:
     - mkdir -pv $PREFIX/lib                        # [linux]
     - mv -v lib/* $PREFIX/lib/                     # [linux]
     - mkdir %LIBRARY_INC%                                   # [win]
-    - copy %SRC_DIR%\\include\\* %LIBRARY_INC%\\            # [win]
+    - xcopy %SRC_DIR%\\include\\* %LIBRARY_INC%\\ /S /Y     # [win]
     - mkdir %LIBRARY_LIB%                                   # [win]
-    - copy %SRC_DIR%\\lib\\* %LIBRARY_LIB%\\                # [win]
+    - xcopy %SRC_DIR%\\lib\\* %LIBRARY_LIB%\\ /S /Y         # [win]
     - mkdir %LIBRARY_BIN%                                   # [win]
-    - copy %SRC_DIR%\\bin\\* %LIBRARY_BIN%\\                # [win]
+    - xcopy %SRC_DIR%\\bin\\* %LIBRARY_BIN%\\ /S /Y         # [win]
     - check-glibc "$PREFIX"/lib*/*.so.* "$PREFIX"/bin/* "$PREFIX"/targets/*/lib*/*.so.* "$PREFIX"/targets/*/bin/*  # [linux]
 
 requirements:
@@ -79,13 +79,14 @@ outputs:
       include:
         - include  # [unix]
         - lib/cmake  # [unix]
-        - lib/*device_static.a  # [unix]
+        - lib/*ncvomp_device_static.a  # [unix]
         - Library\include  # [win]
-        - Library\lib  # [win]
-        - Library\lib\*device_static.lib  # [win]
+        - Library\lib\cmake  # [win]
+        - Library\lib\nvcomp.lib  # [win]
+        - Library\lib\nvcomp_cpu.lib  # [win]
+        - Library\lib\nvcomp_device_static.lib  # [win]
       exclude:
         - lib/cmake/nvcomp/*static*.cmake  # [linux]
-        - Library\lib\*static.lib  # [win]
         - Library\lib\cmake\nvcomp\*static*.cmake  # [win]
     build:
       run_exports:
@@ -124,7 +125,7 @@ outputs:
         - if not exist %LIBRARY_INC%\nvcomp.hpp exit 1                     # [win]
         - if not exist %LIBRARY_LIB%\nvcomp.lib exit 1                     # [win]
         - if not exist %LIBRARY_LIB%\nvcomp_cpu.lib exit 1                 # [win]
-        - if not exist %LIBRARY_LIB%\cmake\nvcomp-config.cmake exit 1      # [win]
+        - if not exist %LIBRARY_LIB%\cmake\nvcomp\nvcomp-config.cmake exit 1      # [win]
         - if exist %LIBRARY_LIB%\nvcomp_static.lib exit 1                  # [win]
         - cmake -B build $CMAKE_ARGS -G Ninja -S test-shared  # [linux]
         - cmake -B build %CMAKE_ARGS% -S test-shared  # [win]
