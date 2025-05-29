@@ -127,7 +127,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\cmake\nvcomp-config.cmake exit 1      # [win]
         - if exist %LIBRARY_LIB%\nvcomp_static.lib exit 1                  # [win]
         - cmake -B build $CMAKE_ARGS -G Ninja -S test-shared  # [linux]
-        - cmake -B build %CMAKE_ARGS% -S test-shared # [win]
+        - cmake -B build %CMAKE_ARGS% -S test-shared  # [win]
         - cmake --build build
 
   - name: libnvcomp-static
@@ -170,7 +170,7 @@ outputs:
         - test -f $PREFIX/lib/libnvcomp_static.a  # [unix]
         - if not exist %LIBRARY_LIB%\nvcomp_static.lib exit 1  # [win]
         - cmake -B build $CMAKE_ARGS -G Ninja -S test-static  # [linux]
-        - cmake -B build %CMAKE_ARGS% -S test-static # [win]
+        - cmake -B build %CMAKE_ARGS% -S test-static  # [win]
         - cmake --build build
 about:
   home: https://developer.nvidia.com/nvcomp
