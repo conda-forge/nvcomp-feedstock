@@ -79,7 +79,7 @@ outputs:
       include:
         - include  # [unix]
         - lib/cmake  # [unix]
-        - lib/*ncvomp_device_static.a  # [unix]
+        - lib/*nvcomp_device_static.a  # [unix]
         - Library\include  # [win]
         - Library\lib\cmake  # [win]
         - Library\lib\nvcomp.lib  # [win]
