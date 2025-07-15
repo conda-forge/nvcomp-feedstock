@@ -73,6 +73,14 @@ outputs:
         - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
         - if not exist %LIBRARY_BIN%\nvcomp.dll exit 1                     # [win]
         - if not exist %LIBRARY_BIN%\nvcomp_cpu.dll exit 1                 # [win]
+    about:
+      license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
+      license_file:
+        - LICENSE
+        - cudart_LICENSE.txt
+      summary: The NVIDIA nvCOMP runtime libraries.
+      description: >-
+        This is a runtime package only. Developers should install libnvcomp-dev to build with nvCOMP.
 
   - name: libnvcomp-dev
     files:
@@ -173,6 +181,15 @@ outputs:
         - cmake -B build $CMAKE_ARGS -G Ninja -S test-static  # [linux]
         - cmake -B build %CMAKE_ARGS% -S test-static  # [win]
         - cmake --build build
+    about:
+      license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
+      license_file:
+        - LICENSE
+        - cudart_LICENSE.txt
+      summary: The NVIDIA nvCOMP static libraries.
+      description: >-
+        Developers should install libnvcomp-dev to build with nvCOMP shared libraries.
+
 about:
   home: https://developer.nvidia.com/nvcomp
   license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
@@ -180,8 +197,8 @@ about:
     - LICENSE
     - cudart_LICENSE.txt
   license_url: https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
-  summary: "High Speed Data Compression Using NVIDIA GPUs"
-  description: |
+  summary: The NVIDIA nvCOMP development package.
+  description: >-
     The nvCOMP library provides fast lossless data compression and
     decompression using a GPU. It features generic compression interfaces to
     enable developers to use high-performance GPU compressors in their
@@ -195,6 +212,6 @@ about:
   dev_url: https://developer.nvidia.com/nvcomp
 
 extra:
-  feedstock-name: nvcomp
+  feedstock-name: libnvcomp
   recipe-maintainers:
     - conda-forge/cuda
