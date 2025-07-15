@@ -1,28 +1,46 @@
-About nvcomp-feedstock
-======================
+About libnvcomp-feedstock
+=========================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/nvcomp-feedstock/blob/main/LICENSE.txt)
+
+
+About libnvcomp
+---------------
 
 Home: https://developer.nvidia.com/nvcomp
 
 Package license: [LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement](https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt)
 
-Summary: High Speed Data Compression Using NVIDIA GPUs
+Summary: The NVIDIA nvCOMP development package.
 
 Development: https://developer.nvidia.com/nvcomp
 
 Documentation: https://docs.nvidia.com/cuda/nvcomp/index.html
 
-The nvCOMP library provides fast lossless data compression and
-decompression using a GPU. It features generic compression interfaces to
-enable developers to use high-performance GPU compressors in their
-applications.
+The nvCOMP library provides fast lossless data compression and decompression using a GPU. It features generic compression interfaces to enable developers to use high-performance GPU compressors in their applications.
+License Agreements:- The packages are governed by the standard NVIDIA Software License Agreement (EULA). By downloading and using the packages, you accept the terms and conditions of the NVIDIA nvCOMP EULA - https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
 
-License Agreements:- The packages are governed by the standard NVIDIA
-Software License Agreement (EULA). By downloading and using the packages,
-you accept the terms and conditions of the NVIDIA nvCOMP EULA -
-https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
+About libnvcomp
+---------------
 
+
+
+Package license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
+
+Summary: The NVIDIA nvCOMP runtime libraries.
+
+This is a runtime package only. Developers should install libnvcomp-dev to build with nvCOMP.
+
+About libnvcomp-static
+----------------------
+
+
+
+Package license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
+
+Summary: The NVIDIA nvCOMP static libraries.
+
+Developers should install libnvcomp-dev to build with nvCOMP shared libraries.
 
 Current build status
 ====================
@@ -42,45 +60,24 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11</td>
+              <td>linux_64_c_compiler_version13cuda_compiler_version12.6cxx_compiler_version13</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19571&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compiler_version12.6cxx_compiler_version13" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13</td>
+              <td>linux_aarch64_c_compiler_version13cuda_compiler_version12.6cxx_compiler_version13</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19571&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_c_compiler_version13cuda_compiler_version12.6cxx_compiler_version13" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11</td>
+              <td>win_64_cuda_compiler_version12.6</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19571&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19571&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_cuda_compilercuda-nvcccuda_compiler_version12.6</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19571&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compilercuda-nvcccuda_compiler_version12.6" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_cuda_compilernvcccuda_compiler_version11.8</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19571&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compilernvcccuda_compiler_version11.8" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/nvcomp-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_version12.6" alt="variant">
                 </a>
               </td>
             </tr>
@@ -100,10 +97,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libnvcomp--dev-green.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libnvcomp-dev.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libnvcomp-dev.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libnvcomp-dev.svg)](https://anaconda.org/conda-forge/libnvcomp-dev) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libnvcomp--static-green.svg)](https://anaconda.org/conda-forge/libnvcomp-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libnvcomp-static.svg)](https://anaconda.org/conda-forge/libnvcomp-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libnvcomp-static.svg)](https://anaconda.org/conda-forge/libnvcomp-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libnvcomp-static.svg)](https://anaconda.org/conda-forge/libnvcomp-static) |
 
-Installing nvcomp
-=================
+Installing libnvcomp
+====================
 
-Installing `nvcomp` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `libnvcomp` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -189,17 +186,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating nvcomp-feedstock
-=========================
+Updating libnvcomp-feedstock
+============================
 
-If you would like to improve the nvcomp recipe or build a new
+If you would like to improve the libnvcomp recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/nvcomp-feedstock are
+Note that all branches in the conda-forge/libnvcomp-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
