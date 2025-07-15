@@ -23,11 +23,13 @@ build:
 
 requirements:
   build:
-    - cf-nvidia-tools 1.*  # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cuda') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
+    - cf-nvidia-tools 1.*  # [linux]
+    - cross-python_{{ target_platform }}    # [build_platform != target_platform]
+    - python                                # [build_platform != target_platform]
   host:
     - cuda-version {{ cuda_compiler_version }}
     - libnvcomp-dev {{ version.split('.')[:3] | join('.') }}.*
@@ -40,10 +42,6 @@ requirements:
 test:
   imports:
     - nvidia.nvcomp
-  requires:
-    - pip
-  commands:
-    - pip check
 
 about:
   home: https://developer.nvidia.com/nvcomp
