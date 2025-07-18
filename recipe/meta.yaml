@@ -1,7 +1,7 @@
 {% set version = "4.2.0.14" %}
 
 package:
-  name: nvcomp-python
+  name: nvcomp
   version: {{ version }}
 
 {% set arm_variant_type = arm_variant_type | default("None") %}
