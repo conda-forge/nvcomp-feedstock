@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/nvcomp-feedstoc
 
 Home: https://developer.nvidia.com/nvcomp
 
-Package license: [LicenseRef-nvCOMP-Software-License-Agreement](https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt)
+Package license: [LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement](https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt)
 
 Summary: The nvCOMP Python bindings. Developers should install libnvcomp-dev for C-APIs.
 
