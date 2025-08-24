@@ -37,7 +37,7 @@ for %%f in (%SP_DIR%\nvidia\nvcomp\nvcomp_impl.cp*-win_amd64.pyd) do (
 if errorlevel 1 exit /b 1
 
 :: Copy the license file
-copy %SP_DIR%\nvidia_nvcomp_cu%major_version%-%PKG_VERSION%.dist-info\LICENSE %SRC_DIR%
+copy %SP_DIR%\nvidia_nvcomp_cu%major_version%-%PKG_VERSION%.dist-info\licenses\LICENSE %SRC_DIR%
 
 :: Exit on error
 if errorlevel 1 exit /b 1
