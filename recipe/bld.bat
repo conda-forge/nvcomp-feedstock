@@ -16,7 +16,7 @@ if errorlevel 1 exit /b 1
 
 :: Remove unnecessary directories and files
 rmdir /s /q %SP_DIR%\nvidia\nvcomp\include
-del /q %SP_DIR%\nvidia\nvcomp\nvcomp.dll
+del /q %SP_DIR%\nvidia\nvcomp\nvcomp*.dll
 
 :: Exit on error
 if errorlevel 1 exit /b 1
