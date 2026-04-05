@@ -19,4 +19,4 @@ done
 
 check-glibc $SP_DIR/nvidia/nvcomp/*.so
 
-cp $SP_DIR/nvidia_nvcomp*.dist-info/LICENSE $SRC_DIR
+cp $SP_DIR/nvidia_nvcomp*.dist-info/licenses/LICENSE $SRC_DIR
