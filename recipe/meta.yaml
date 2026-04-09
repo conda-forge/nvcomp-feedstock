@@ -7,18 +7,18 @@ package:
 {% set arm_variant_type = arm_variant_type | default("None") %}
 {% set cuda_compiler_version = cuda_compiler_version | default("None") %}
 source:
-  - url: "https://files.pythonhosted.org/packages/36/e4/9947cf1881e1e0451f1aaa10ca9db688b229736a1e9946432e5ed722372d/nvidia_nvcomp_cu12-5.2.0.10-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"  # [linux and x86_64 and (cuda_compiler_version or "").startswith("12")]
+  - url: "https://files.pythonhosted.org/packages/36/e4/9947cf1881e1e0451f1aaa10ca9db688b229736a1e9946432e5ed722372d/nvidia_nvcomp_cu12-{{ version }}-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"  # [linux and x86_64 and (cuda_compiler_version or "").startswith("12")]
     sha256: "40becb2ec4c14d5a183bb6c4154fa4283232e39a202ab3822b59b622b2ec99a3"  # [linux and x86_64 and (cuda_compiler_version or "").startswith("12")]E
-  - url: "https://files.pythonhosted.org/packages/69/5d/a3ea3ae84389e3330c383b5c1d533d36ff10be87a81c1553154e7a408bb0/nvidia_nvcomp_cu12-5.2.0.10-py3-none-manylinux_2_26_aarch64.whl"  # [linux and aarch64 and (cuda_compiler_version or "").startswith("12") and arm_variant_type == "sbsa"]
+  - url: "https://files.pythonhosted.org/packages/69/5d/a3ea3ae84389e3330c383b5c1d533d36ff10be87a81c1553154e7a408bb0/nvidia_nvcomp_cu12-{{ version }}-py3-none-manylinux_2_26_aarch64.whl"  # [linux and aarch64 and (cuda_compiler_version or "").startswith("12") and arm_variant_type == "sbsa"]
     sha256: "fb44c245f8ce7dbf4d6cb915b1b955e7f2369fba723ca294da3631a712fdf401"  # [linux and aarch64 and (cuda_compiler_version or "").startswith("12") and arm_variant_type == "sbsa"]
-  - url: "https://files.pythonhosted.org/packages/03/b6/5c552a181066e7a2e1825eff8580acaeb9459fd0bf172481abeb6176fc02/nvidia_nvcomp_cu12-5.2.0.10-py3-none-win_amd64.whl"  # [win and x86_64 and (cuda_compiler_version or "").startswith("12")]
+  - url: "https://files.pythonhosted.org/packages/03/b6/5c552a181066e7a2e1825eff8580acaeb9459fd0bf172481abeb6176fc02/nvidia_nvcomp_cu12-{{ version }}-py3-none-win_amd64.whl"  # [win and x86_64 and (cuda_compiler_version or "").startswith("12")]
     sha256: "7e2b3cdb888b710bbe0a27ba4b582105cb02ccf7999259a1066656f8533e2dab"  # [win and x86_64 and (cuda_compiler_version or "").startswith("12")]
 
-  - url: "https://files.pythonhosted.org/packages/eb/32/b880a444cbd46c27ae6d1f15abd32ec1fc04ae72cb83136b57e237270363/nvidia_nvcomp_cu13-5.2.0.10-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"  # [linux and x86_64 and (cuda_compiler_version or "").startswith("13")]
+  - url: "https://files.pythonhosted.org/packages/eb/32/b880a444cbd46c27ae6d1f15abd32ec1fc04ae72cb83136b57e237270363/nvidia_nvcomp_cu13-{{ version }}-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"  # [linux and x86_64 and (cuda_compiler_version or "").startswith("13")]
     sha256: "a4d27a116f5f2375c41ce929b17833a562bf794bd07dd56846741f030df91e1e"  # [linux and x86_64 and (cuda_compiler_version or "").startswith("13")]
-  - url: "https://files.pythonhosted.org/packages/e8/43/2ad0433ed22f5b39ae0f9dbfdd98c4dfeaded6236dca9166249529693a18/nvidia_nvcomp_cu13-5.2.0.10-py3-none-manylinux_2_26_aarch64.whl"  # [linux and aarch64 and (cuda_compiler_version or "").startswith("13") and arm_variant_type == "sbsa"]
+  - url: "https://files.pythonhosted.org/packages/e8/43/2ad0433ed22f5b39ae0f9dbfdd98c4dfeaded6236dca9166249529693a18/nvidia_nvcomp_cu13-{{ version }}-py3-none-manylinux_2_26_aarch64.whl"  # [linux and aarch64 and (cuda_compiler_version or "").startswith("13") and arm_variant_type == "sbsa"]
     sha256: "a54b763f5f4b32020a29e78e2dccbbd7dc886c9acc4663a12e44de2554c5b271"  # [linux and aarch64 and (cuda_compiler_version or "").startswith("13") and arm_variant_type == "sbsa"]
-  - url: "https://files.pythonhosted.org/packages/2e/b8/8b9cafff71ffeb8fcea08e7272f1eca417a55d16822ca03cec9699242b9b/nvidia_nvcomp_cu13-5.2.0.10-py3-none-win_amd64.whl"  # [win and x86_64 and (cuda_compiler_version or "").startswith("13")]
+  - url: "https://files.pythonhosted.org/packages/2e/b8/8b9cafff71ffeb8fcea08e7272f1eca417a55d16822ca03cec9699242b9b/nvidia_nvcomp_cu13-{{ version }}-py3-none-win_amd64.whl"  # [win and x86_64 and (cuda_compiler_version or "").startswith("13")]
     sha256: "9853e331170e2fba4b17376c12e4db5060eddd6e1d5fff464fff394667e2f150"  # [win and x86_64 and (cuda_compiler_version or "").startswith("13")]
 
   # Include cudart license because it is statically linked.
