@@ -78,4 +78,5 @@ about:
 extra:
   feedstock-name: nvcomp
   recipe-maintainers:
+    - baliika
     - conda-forge/cuda
