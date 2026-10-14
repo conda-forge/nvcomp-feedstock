@@ -3,7 +3,7 @@ arm_variant_type:
 c_compiler:
 - gcc
 c_compiler_version:
-- '14'
+- '15'
 c_stdlib:
 - sysroot
 c_stdlib_version:
@@ -15,19 +15,19 @@ channel_targets:
 cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
-- '13.0'
+- '13.4'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '14'
+- '15'
 docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma9
+- quay.io/condaforge/linux-anvil-x86_64:alma10
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.14.* *_cp314
+- 3.13.* *_cp313
 target_platform:
 - linux-aarch64
 zip_keys:
